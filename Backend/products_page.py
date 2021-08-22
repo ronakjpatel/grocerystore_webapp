@@ -1,7 +1,6 @@
 from sql_conn import get_sql_connection
 
 
-
 def get_all_products(conn):
 
 
@@ -26,7 +25,7 @@ def get_all_products(conn):
         print(product_id, name, unit_of_measure, price_per_unit,measure_name)
 
 
-    cnx.close()
+    conn.close()
 
     return result
 
@@ -43,11 +42,19 @@ def insert_new_product(connection, product):
     return cursor.lastrowid
 
 
+#Delete product using product_ID
+
+def delete_product(connection,product_id):
+    cursor = connection.cursor()
+
+    query_string = ("DELETE FROM products WHERE product_id = " + str(product_id))
+    cursor.execute(query_string)
+    connection.commit()
+
+
+
 
 if __name__=='__main__':
     conn = get_sql_connection()
-    print(insert_new_product(conn,{
-        'product_name':'cabbage',
-        'uom_id':'2',
-        'price_per_unit':'10'
-    }))
+    print(delete_product(conn,8))
+        
