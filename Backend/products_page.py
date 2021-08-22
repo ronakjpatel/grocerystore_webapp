@@ -56,5 +56,5 @@ def delete_product(connection,product_id):
 
 if __name__=='__main__':
     conn = get_sql_connection()
-    print(delete_product(conn,8))
+    #print(delete_product(conn,8))
         
